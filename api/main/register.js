@@ -4,9 +4,24 @@ const subModels = require('../../sub_models/index');
 const mongoose = require('mongoose');
 const config = require('../../bin/config');
 
+app.get('/list', (req, res) => {
+  app.get('db').model('business').find({}, (err, data) => {
+      if (err) {
+        return res.json({
+          type: false,
+          message: err.toString(),
+        });
+      }
+      return res.json({
+        type: true,
+        data: data[6],
+      });
+    }
+  );
+});
 
 // Yeni bir business kaydetmek için kullanılır. Yani sub domain oluşturmak için kullanılır.
-app.post('/', async (req, res) => {
+app.post('/', (req, res) => {
   app.get('db').model('business').create(
     {
       prefix: req.body.name,
@@ -28,12 +43,13 @@ app.post('/', async (req, res) => {
             }
             return res.json({
               type: true,
-              message: 'Şirket oluşturulmuştur',
+              message: 'Veri tabanı oluşturulmuştur',
             });
          })
       });
     }
   );
 });
+
 
 module.exports = app;

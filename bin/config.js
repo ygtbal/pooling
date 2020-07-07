@@ -18,7 +18,7 @@ module.exports = {
     salt: 'aJ",^}A*r+s.CPc$[V:(0',
   },
   server: {
-    port: 3000,
+    port: 3001,
     ip: '127.0.0.1',
   },
 };
